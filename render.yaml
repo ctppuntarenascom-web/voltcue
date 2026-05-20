@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: voltcue-cloud-api
+    env: node
+    rootDir: cloud-api
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: VOLTCUE_DEMO_USER_TOKEN
+        generateValue: true
+      - key: VOLTCUE_DEMO_USER_EMAIL
+        value: demo@voltcue.local

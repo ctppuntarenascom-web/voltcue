@@ -1,0 +1,13 @@
+{
+  "name": "voltcue-alexa-skill",
+  "version": "0.1.0",
+  "private": true,
+  "description": "VoltCue Alexa Skill demo handler",
+  "main": "lambda/index.js",
+  "scripts": {
+    "test": "node lambda/local-test.js"
+  },
+  "dependencies": {
+    "ask-sdk-core": "^2.14.0"
+  }
+}

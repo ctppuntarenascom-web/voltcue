@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VoltCue</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <section class="topbar">
+      <div class="brand">
+        <img class="logo" src="assets/voltcue-logo.png" alt="">
+        <div>
+          <p class="eyebrow">VoltCue para Windows</p>
+          <h1>Tu PC esta lista</h1>
+        </div>
+      </div>
+      <span id="mode" class="mode">Modo simulacion</span>
+    </section>
+
+    <section class="simple-layout">
+      <article class="card qr-card">
+        <p class="label">Paso unico</p>
+        <h2>Escanea para conectar tu telefono</h2>
+        <img id="qrImage" class="qr-main" src="" alt="QR para vincular VoltCue">
+        <p class="muted">Abre la camara del telefono, escanea el QR y toca Vincular.</p>
+        <button id="mobileUrl" class="button">Abrir control movil</button>
+      </article>
+
+      <aside class="side-stack">
+        <article class="card status-card-main">
+          <p class="label">Esta computadora</p>
+          <input id="deviceName" class="name-input" maxlength="40" placeholder="Mi PC">
+          <button id="saveNameButton" class="button secondary">Guardar nombre</button>
+          <div class="status-line">
+            <span id="statusDot" class="status-dot"></span>
+            <div>
+              <strong id="statusTitle">Esperando telefono</strong>
+              <p id="statusDetail">Escanea el QR para vincular.</p>
+            </div>
+          </div>
+        </article>
+
+        <article id="shutdownCard" class="card countdown-card hidden">
+          <p class="label">Accion en progreso</p>
+          <div id="countdown" class="countdown">10</div>
+          <button id="cancelButton" class="button danger">Cancelar accion</button>
+        </article>
+
+        <article class="card quick-settings">
+          <label class="toggle-row">
+            <input id="autoStart" type="checkbox">
+            <span>Iniciar con Windows</span>
+          </label>
+          <button id="hideButton" class="button secondary">Minimizar junto al reloj</button>
+        </article>
+      </aside>
+    </section>
+
+    <details class="advanced">
+      <summary>Avanzado</summary>
+      <section class="advanced-grid">
+        <article class="card">
+          <p class="label">PIN manual</p>
+          <div class="pin-wrap">
+            <span id="pin">000000</span>
+          </div>
+          <button id="pinButton" class="button secondary">Reiniciar vinculacion</button>
+        </article>
+
+        <article class="card">
+          <p class="label">Enlace local</p>
+          <button id="copyUrl" class="url-button">http://0.0.0.0:8787</button>
+          <p class="muted small">Usalo solo si el QR no funciona.</p>
+        </article>
+
+        <article class="card">
+          <p class="label">Alexa demo</p>
+          <h2>Nube</h2>
+          <input id="cloudApiUrl" class="name-input compact" placeholder="http://localhost:8799">
+          <label class="toggle-row">
+            <input id="cloudEnabled" type="checkbox">
+            <span>Conectar a nube demo</span>
+          </label>
+          <p id="cloudStatus" class="muted small">Desconectada</p>
+        </article>
+
+        <article class="card devices-card">
+          <p class="label">Seguridad</p>
+          <h2>Dispositivos vinculados</h2>
+          <div id="devices" class="devices"></div>
+        </article>
+
+        <article class="card history-card">
+          <p class="label">Actividad</p>
+          <h2>Historial reciente</h2>
+          <div id="history" class="history"></div>
+        </article>
+      </section>
+    </details>
+  </main>
+  <script src="renderer.js"></script>
+</body>
+</html>

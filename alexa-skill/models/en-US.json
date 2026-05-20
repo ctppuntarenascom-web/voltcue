@@ -1,0 +1,67 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "volt cue",
+      "intents": [
+        {
+          "name": "ShutdownIntent",
+          "slots": [],
+          "samples": [
+            "turn off my pc",
+            "shut down my pc",
+            "turn off my computer",
+            "shut down my computer",
+            "power off my desktop"
+          ]
+        },
+        {
+          "name": "RestartIntent",
+          "slots": [],
+          "samples": [
+            "restart my pc",
+            "reboot my pc",
+            "restart my computer",
+            "reboot my computer"
+          ]
+        },
+        {
+          "name": "SleepIntent",
+          "slots": [],
+          "samples": [
+            "put my pc to sleep",
+            "sleep my computer",
+            "suspend my pc",
+            "put my computer to sleep"
+          ]
+        },
+        {
+          "name": "LockIntent",
+          "slots": [],
+          "samples": [
+            "lock my pc",
+            "lock my computer",
+            "lock my desktop",
+            "secure my computer"
+          ]
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        }
+      ],
+      "types": []
+    }
+  }
+}

@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VoltCue Android Concept</title>
+  <style>
+    :root {
+      --cyan: #139fc2;
+      --cyan-dark: #0d7f9b;
+      --ink: #061a2b;
+      --muted: #657987;
+      --line: #dce8ee;
+      --bg: #edf7fa;
+      --danger: #e5484d;
+      --ok: #12a66a;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #f8fdff, var(--bg));
+    }
+
+    header {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 32px 24px 12px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 34px;
+      letter-spacing: 0;
+    }
+
+    header p {
+      margin: 8px 0 0;
+      color: var(--muted);
+    }
+
+    .grid {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 22px;
+    }
+
+    .phone {
+      width: 230px;
+      min-height: 500px;
+      margin: 0 auto;
+      padding: 12px;
+      border-radius: 34px;
+      background: #101820;
+      box-shadow: 0 24px 60px rgba(8, 37, 51, .18);
+    }
+
+    .screen {
+      min-height: 476px;
+      overflow: hidden;
+      border-radius: 24px;
+      background: #f7fbfd;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .status {
+      height: 24px;
+      padding: 8px 14px 0;
+      display: flex;
+      justify-content: space-between;
+      color: #7c909b;
+      font-size: 9px;
+    }
+
+    .content {
+      padding: 18px;
+      flex: 1;
+    }
+
+    .center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .logo {
+      width: 78px;
+      height: 78px;
+      border-radius: 20px;
+      object-fit: cover;
+      box-shadow: 0 18px 30px rgba(19, 159, 194, .24);
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 8px 0 16px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    button, .button {
+      min-height: 44px;
+      width: 100%;
+      border: 0;
+      border-radius: 10px;
+      background: var(--cyan);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      font-weight: 800;
+      margin-top: 10px;
+    }
+
+    .secondary {
+      background: #eaf4f8;
+      color: var(--ink);
+    }
+
+    .danger {
+      background: var(--danger);
+    }
+
+    .input {
+      height: 48px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: white;
+      display: grid;
+      place-items: center;
+      font-size: 20px;
+      letter-spacing: 5px;
+      font-weight: 800;
+      color: #9aabb5;
+    }
+
+    .pc-card, .panel {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: white;
+      padding: 14px;
+      box-shadow: 0 14px 30px rgba(15, 48, 66, .06);
+      margin: 12px 0;
+    }
+
+    .row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .mini-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .ok {
+      color: var(--ok);
+      font-weight: 800;
+      font-size: 12px;
+      margin: 2px 0 0;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .action {
+      min-height: 76px;
+      padding: 10px;
+      align-items: start;
+      justify-items: start;
+      text-align: left;
+      background: #eef8fb;
+      color: var(--ink);
+    }
+
+    .action.danger {
+      background: #fff1f2;
+      color: #b42329;
+    }
+
+    .action small {
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 4px;
+    }
+
+    .history-row {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #edf3f6;
+      padding: 10px 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .caption {
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>VoltCue Android Concept</h1>
+    <p>Primer diseno visual para la futura app de Google Play.</p>
+  </header>
+
+  <main class="grid">
+    <article>
+      <div class="phone">
+        <div class="screen">
+          <div class="status"><span>9:41</span><span>100%</span></div>
+          <div class="content center">
+            <img class="logo" src="assets/voltcue-logo.png" alt="">
+            <h2>VoltCue</h2>
+            <p>Apaga tu PC con tu voz.</p>
+            <div class="button">Agregar PC</div>
+            <div class="button secondary">Como funciona</div>
+          </div>
+        </div>
+      </div>
+      <div class="caption">Bienvenida</div>
+    </article>
+
+    <article>
+      <div class="phone">
+        <div class="screen">
+          <div class="status"><span>9:41</span><span>100%</span></div>
+          <div class="content">
+            <h2>Agregar PC</h2>
+            <p>Escanea el QR de VoltCue para Windows o escribe el PIN.</p>
+            <div class="panel center">
+              <img class="logo" src="assets/voltcue-logo.png" alt="">
+              <p>Escanear QR</p>
+            </div>
+            <div class="input">482913</div>
+            <div class="button">Vincular PC</div>
+          </div>
+        </div>
+      </div>
+      <div class="caption">Vinculacion QR/PIN</div>
+    </article>
+
+    <article>
+      <div class="phone">
+        <div class="screen">
+          <div class="status"><span>9:41</span><span>100%</span></div>
+          <div class="content">
+            <h2>Mis PCs</h2>
+            <p>Selecciona una computadora vinculada.</p>
+            <div class="pc-card row">
+              <img class="mini-logo" src="assets/voltcue-logo.png" alt="">
+              <div>
+                <h3>PC Gamer</h3>
+                <p class="ok">Conectada</p>
+              </div>
+            </div>
+            <div class="pc-card row">
+              <img class="mini-logo" src="assets/voltcue-logo.png" alt="">
+              <div>
+                <h3>Laptop Oficina</h3>
+                <p>Desconectada</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="caption">Lista de PCs</div>
+    </article>
+
+    <article>
+      <div class="phone">
+        <div class="screen">
+          <div class="status"><span>9:41</span><span>100%</span></div>
+          <div class="content">
+            <div class="row">
+              <img class="mini-logo" src="assets/voltcue-logo.png" alt="">
+              <div>
+                <h2>PC Gamer</h2>
+                <p class="ok">Conectada</p>
+              </div>
+            </div>
+            <div class="actions">
+              <div class="button action danger">Apagar<small>Cuenta regresiva</small></div>
+              <div class="button action">Reiniciar<small>Cuenta regresiva</small></div>
+              <div class="button action">Suspender<small>Modo reposo</small></div>
+              <div class="button action">Bloquear<small>Pantalla segura</small></div>
+            </div>
+            <div class="button secondary">Cancelar accion</div>
+          </div>
+        </div>
+      </div>
+      <div class="caption">Control</div>
+    </article>
+
+    <article>
+      <div class="phone">
+        <div class="screen">
+          <div class="status"><span>9:41</span><span>100%</span></div>
+          <div class="content">
+            <h2>Historial</h2>
+            <p>Acciones recientes.</p>
+            <div class="history-row"><span>Apagar PC</span><strong>Simulado</strong></div>
+            <div class="history-row"><span>Bloquear pantalla</span><strong>OK</strong></div>
+            <div class="history-row"><span>Vincular PC</span><strong>OK</strong></div>
+          </div>
+        </div>
+      </div>
+      <div class="caption">Historial</div>
+    </article>
+  </main>
+</body>
+</html>

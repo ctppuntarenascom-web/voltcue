@@ -1,0 +1,10 @@
+{
+  "name": "voltcue-cloud-api",
+  "version": "0.1.0",
+  "private": true,
+  "description": "VoltCue demo cloud API for Alexa-ready command routing",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

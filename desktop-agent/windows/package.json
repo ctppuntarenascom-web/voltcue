@@ -1,0 +1,51 @@
+{
+  "name": "voltcue-windows-agent",
+  "version": "0.2.0",
+  "private": true,
+  "description": "VoltCue Windows desktop agent",
+  "main": "electron-main.js",
+  "scripts": {
+    "start": "electron .",
+    "start:real": "electron . --real-shutdown",
+    "start:cloud-demo": "electron . --cloud-demo",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "author": "VoltCue",
+  "build": {
+    "appId": "com.voltcue.agent.windows",
+    "productName": "VoltCue",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "electron-main.js",
+      "electron-preload.js",
+      "electron-ui/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "build/icon.png",
+      "signAndEditExecutable": false,
+      "artifactName": "VoltCue-Windows-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "VoltCue"
+    }
+  },
+  "devDependencies": {
+    "electron": "^35.1.5",
+    "electron-builder": "^26.8.1"
+  },
+  "dependencies": {
+    "qrcode": "^1.5.4"
+  }
+}

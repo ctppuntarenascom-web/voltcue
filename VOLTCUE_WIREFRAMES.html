@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VoltCue Wireframes</title>
+  <style>
+    :root {
+      --cyan: #139fc2;
+      --ink: #15222b;
+      --muted: #6b7b86;
+      --line: #d9e3e8;
+      --panel: #ffffff;
+      --bg: #f4f7f9;
+      --danger: #e5484d;
+      --ok: #18a86b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+    }
+
+    header {
+      padding: 32px 24px 18px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 36px;
+      line-height: 1.1;
+    }
+
+    header p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .brand-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .app-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 14px;
+      background: var(--cyan);
+      display: grid;
+      place-items: center;
+      color: white;
+    }
+
+    .app-icon svg {
+      width: 36px;
+      height: 36px;
+    }
+
+    .section {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 18px 24px 42px;
+    }
+
+    .section h2 {
+      margin: 8px 0 18px;
+      font-size: 24px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 22px;
+      align-items: start;
+    }
+
+    .phone {
+      width: 250px;
+      min-height: 510px;
+      margin: 0 auto;
+      padding: 14px;
+      border: 2px solid #151f27;
+      border-radius: 34px;
+      background: #101820;
+      box-shadow: 0 16px 38px rgba(18, 37, 49, .16);
+    }
+
+    .phone-screen {
+      min-height: 478px;
+      border-radius: 24px;
+      background: var(--panel);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .status-bar {
+      height: 24px;
+      padding: 7px 14px 0;
+      display: flex;
+      justify-content: space-between;
+      font-size: 9px;
+      color: #7b8d98;
+    }
+
+    .mobile-content {
+      padding: 22px 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .center {
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+    }
+
+    .mini-icon {
+      width: 76px;
+      height: 76px;
+      border-radius: 20px;
+      background: var(--cyan);
+      color: white;
+      display: grid;
+      place-items: center;
+      margin-bottom: 20px;
+    }
+
+    .mini-icon svg {
+      width: 52px;
+      height: 52px;
+    }
+
+    .screen-title {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.15;
+    }
+
+    .screen-copy {
+      margin: 10px 0 20px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .button {
+      width: 100%;
+      min-height: 44px;
+      border: 0;
+      border-radius: 8px;
+      background: var(--cyan);
+      color: #fff;
+      font-weight: 700;
+      font-size: 14px;
+      display: grid;
+      place-items: center;
+      margin-top: 10px;
+    }
+
+    .button.secondary {
+      background: #eef5f8;
+      color: var(--ink);
+    }
+
+    .button.danger {
+      background: var(--danger);
+    }
+
+    .input {
+      height: 48px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: #a0adb5;
+      font-size: 18px;
+      letter-spacing: 4px;
+      margin: 16px 0 6px;
+      background: #fbfdfe;
+    }
+
+    .pc-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 14px 0;
+    }
+
+    .pc-glyph {
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      background: #e8f7fb;
+      color: var(--cyan);
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+    }
+
+    .pc-name {
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .pc-status {
+      margin-top: 4px;
+      color: var(--ok);
+      font-size: 12px;
+    }
+
+    .control-panel {
+      margin-top: 20px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+      background: #fbfdfe;
+    }
+
+    .power-large {
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      margin: 0 auto 14px;
+      border: 8px solid var(--danger);
+      color: var(--danger);
+      display: grid;
+      place-items: center;
+    }
+
+    .history-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid var(--line);
+      padding: 12px 0;
+      font-size: 13px;
+    }
+
+    .history-row span:last-child {
+      color: var(--ok);
+      font-weight: 700;
+    }
+
+    .desktop {
+      max-width: 560px;
+      margin: 0 auto 24px;
+      border: 1px solid #b9c9d3;
+      border-radius: 10px;
+      background: white;
+      box-shadow: 0 16px 38px rgba(18, 37, 49, .14);
+      overflow: hidden;
+    }
+
+    .window-bar {
+      height: 36px;
+      background: #edf3f6;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 12px;
+      color: #5a6b76;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #c6d3db;
+    }
+
+    .desktop-body {
+      padding: 26px;
+    }
+
+    .desktop-hero {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .pin {
+      border: 1px dashed #9fb4bf;
+      border-radius: 8px;
+      padding: 18px;
+      text-align: center;
+      background: #f8fbfc;
+      margin: 18px 0;
+    }
+
+    .pin-code {
+      font-size: 34px;
+      letter-spacing: 8px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .countdown {
+      text-align: center;
+      padding: 12px 0;
+    }
+
+    .count-number {
+      width: 118px;
+      height: 118px;
+      border-radius: 50%;
+      margin: 12px auto;
+      border: 10px solid var(--danger);
+      color: var(--danger);
+      font-size: 48px;
+      font-weight: 800;
+      display: grid;
+      place-items: center;
+    }
+
+    .caption {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      header {
+        padding-top: 24px;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+      .section {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand-row">
+      <div class="app-icon" aria-hidden="true">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="13" y="12" width="38" height="28" rx="3"></rect>
+          <path d="M32 19v10"></path>
+          <path d="M25 26a9 9 0 1 0 14 0"></path>
+          <path d="M26 47h12"></path>
+          <path d="M22 53c6 4 14 4 20 0"></path>
+        </svg>
+      </div>
+      <div>
+        <h1>VoltCue</h1>
+        <p>Apaga tu PC con tu voz.</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <h2>App Android</h2>
+      <div class="grid">
+        <article>
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="status-bar"><span>9:41</span><span>100%</span></div>
+              <div class="mobile-content center">
+                <div class="mini-icon" aria-hidden="true">
+                  <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="13" y="12" width="38" height="28" rx="3"></rect>
+                    <path d="M32 19v10"></path>
+                    <path d="M25 26a9 9 0 1 0 14 0"></path>
+                    <path d="M26 47h12"></path>
+                    <path d="M22 53c6 4 14 4 20 0"></path>
+                  </svg>
+                </div>
+                <h3 class="screen-title">VoltCue</h3>
+                <p class="screen-copy">Apaga tu PC con tu voz o desde tu telefono.</p>
+                <div class="button">Agregar PC</div>
+                <div class="button secondary">Como funciona</div>
+              </div>
+            </div>
+          </div>
+          <p class="caption">1. Bienvenida</p>
+        </article>
+
+        <article>
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="status-bar"><span>9:41</span><span>100%</span></div>
+              <div class="mobile-content">
+                <h3 class="screen-title">Agregar PC</h3>
+                <p class="screen-copy">Escribe el codigo que aparece en VoltCue para Windows.</p>
+                <div class="input">482913</div>
+                <div class="button">Vincular PC</div>
+                <div style="flex:1"></div>
+                <p class="screen-copy">El PIN es temporal y solo funciona en tu red Wi-Fi.</p>
+              </div>
+            </div>
+          </div>
+          <p class="caption">2. Vincular con PIN</p>
+        </article>
+
+        <article>
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="status-bar"><span>9:41</span><span>100%</span></div>
+              <div class="mobile-content">
+                <h3 class="screen-title">Mis PCs</h3>
+                <p class="screen-copy">Selecciona una computadora para controlarla.</p>
+                <div class="pc-card">
+                  <div class="pc-glyph">
+                    <svg width="26" height="26" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="10" y="12" width="44" height="30" rx="3"></rect>
+                      <path d="M26 52h12"></path>
+                      <path d="M32 42v10"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="pc-name">Desktop de Casa</div>
+                    <div class="pc-status">Conectada</div>
+                  </div>
+                </div>
+                <div class="button secondary">Agregar otra PC</div>
+                <div style="flex:1"></div>
+                <p class="screen-copy">Demo gratis: 1 PC vinculada.</p>
+              </div>
+            </div>
+          </div>
+          <p class="caption">3. Lista de PCs</p>
+        </article>
+
+        <article>
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="status-bar"><span>9:41</span><span>100%</span></div>
+              <div class="mobile-content">
+                <h3 class="screen-title">Desktop de Casa</h3>
+                <p class="screen-copy">Conectada y lista para recibir comandos.</p>
+                <div class="control-panel">
+                  <div class="power-large">
+                    <svg width="48" height="48" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round">
+                      <path d="M32 10v20"></path>
+                      <path d="M20 24a18 18 0 1 0 24 0"></path>
+                    </svg>
+                  </div>
+                  <strong>Apagar PC</strong>
+                  <p class="screen-copy">Se pedira confirmacion antes de enviar la orden.</p>
+                </div>
+                <div class="button danger">Apagar PC</div>
+                <div class="button secondary">Cancelar apagado</div>
+              </div>
+            </div>
+          </div>
+          <p class="caption">4. Control principal</p>
+        </article>
+
+        <article>
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="status-bar"><span>9:41</span><span>100%</span></div>
+              <div class="mobile-content">
+                <h3 class="screen-title">Historial</h3>
+                <p class="screen-copy">Acciones recientes enviadas a tus PCs.</p>
+                <div class="history-row"><span>Apagar PC</span><span>Exitoso</span></div>
+                <div class="history-row"><span>Cancelar apagado</span><span>Exitoso</span></div>
+                <div class="history-row"><span>Vincular PC</span><span>Exitoso</span></div>
+              </div>
+            </div>
+          </div>
+          <p class="caption">5. Historial</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Programa Windows</h2>
+      <div class="grid">
+        <article class="desktop">
+          <div class="window-bar">
+            <span>VoltCue para Windows</span>
+            <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          </div>
+          <div class="desktop-body">
+            <div class="desktop-hero">
+              <div class="app-icon" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="13" y="12" width="38" height="28" rx="3"></rect>
+                  <path d="M32 19v10"></path>
+                  <path d="M25 26a9 9 0 1 0 14 0"></path>
+                  <path d="M26 47h12"></path>
+                  <path d="M22 53c6 4 14 4 20 0"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="screen-title">Esperando vinculacion</h3>
+                <p class="screen-copy">Ingresa este PIN en la app Android.</p>
+              </div>
+            </div>
+            <div class="pin">
+              <div class="pin-code">482913</div>
+            </div>
+            <div class="button">Generar nuevo PIN</div>
+          </div>
+        </article>
+
+        <article class="desktop">
+          <div class="window-bar">
+            <span>VoltCue para Windows</span>
+            <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          </div>
+          <div class="desktop-body">
+            <div class="desktop-hero">
+              <div class="app-icon" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="13" y="12" width="38" height="28" rx="3"></rect>
+                  <path d="M32 19v10"></path>
+                  <path d="M25 26a9 9 0 1 0 14 0"></path>
+                  <path d="M26 47h12"></path>
+                  <path d="M22 53c6 4 14 4 20 0"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="screen-title">PC vinculada</h3>
+                <p class="screen-copy">Desktop de Casa esta lista para recibir comandos.</p>
+              </div>
+            </div>
+            <div class="pc-card">
+              <div class="pc-glyph">
+                <svg width="26" height="26" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M32 10v20"></path>
+                  <path d="M20 24a18 18 0 1 0 24 0"></path>
+                </svg>
+              </div>
+              <div>
+                <div class="pc-name">Telefono vinculado</div>
+                <div class="pc-status">Conectado por Wi-Fi local</div>
+              </div>
+            </div>
+            <div class="button secondary">Desvincular</div>
+          </div>
+        </article>
+
+        <article class="desktop">
+          <div class="window-bar">
+            <span>VoltCue para Windows</span>
+            <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          </div>
+          <div class="desktop-body countdown">
+            <h3 class="screen-title">Tu PC se apagara</h3>
+            <p class="screen-copy">Orden enviada desde VoltCue Android.</p>
+            <div class="count-number">10</div>
+            <div class="button danger">Cancelar apagado</div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
