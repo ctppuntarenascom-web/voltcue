@@ -95,6 +95,65 @@ function queueCommand(device, action, source = "cloud") {
   return command;
 }
 
+function alexaResponse(output, shouldEndSession = true) {
+  return {
+    version: "1.0",
+    response: {
+      outputSpeech: {
+        type: "PlainText",
+        text: output,
+      },
+      shouldEndSession,
+    },
+  };
+}
+
+function alexaLanguage(body) {
+  const locale = body?.request?.locale || "en-US";
+  return locale.toLowerCase().startsWith("es") ? "es" : "en";
+}
+
+function alexaText(lang, key, action = "") {
+  const text = {
+    en: {
+      launch: "VoltCue is ready. You can say, turn off my PC, restart my PC, sleep my computer, or lock my desktop.",
+      help: "You can say, turn off my PC, restart my PC, sleep my computer, or lock my desktop.",
+      queued: {
+        shutdown: "Okay, I sent the shutdown command to your PC.",
+        restart: "Okay, I sent the restart command to your PC.",
+        sleep: "Okay, I sent the sleep command to your PC.",
+        lock: "Okay, I sent the lock command to your PC.",
+      },
+      noDevice: "I could not find a PC connected to VoltCue.",
+      unsupported: "VoltCue does not support that command yet.",
+      bye: "Okay.",
+    },
+    es: {
+      launch: "VoltCue esta listo. Puedes decir, apaga mi PC, reinicia mi PC, suspende mi computadora, o bloquea mi PC.",
+      help: "Puedes decir, apaga mi PC, reinicia mi PC, suspende mi computadora, o bloquea mi PC.",
+      queued: {
+        shutdown: "Listo, envie el comando para apagar tu PC.",
+        restart: "Listo, envie el comando para reiniciar tu PC.",
+        sleep: "Listo, envie el comando para suspender tu PC.",
+        lock: "Listo, envie el comando para bloquear tu PC.",
+      },
+      noDevice: "No encontre una PC conectada a VoltCue.",
+      unsupported: "VoltCue todavia no soporta ese comando.",
+      bye: "De acuerdo.",
+    },
+  };
+  return action ? text[lang][key][action] : text[lang][key];
+}
+
+function actionFromIntent(intentName) {
+  return {
+    ShutdownIntent: "shutdown",
+    RestartIntent: "restart",
+    SleepIntent: "sleep",
+    LockIntent: "lock",
+  }[intentName] || "";
+}
+
 async function route(req, res) {
   if (req.method === "OPTIONS") {
     send(res, 200, { ok: true });
@@ -208,6 +267,50 @@ async function route(req, res) {
 
     const command = queueCommand(device, action, "alexa-demo");
     send(res, 200, { ok: true, message: `${action} queued for ${device.name}.`, command });
+    return;
+  }
+
+  if (req.method === "POST" && url.pathname === "/api/alexa/skill") {
+    const body = await readJson(req);
+    const lang = alexaLanguage(body);
+    const requestType = body?.request?.type;
+    const intentName = body?.request?.intent?.name || "";
+
+    if (requestType === "LaunchRequest") {
+      send(res, 200, alexaResponse(alexaText(lang, "launch"), false));
+      return;
+    }
+
+    if (requestType === "IntentRequest" && intentName === "AMAZON.HelpIntent") {
+      send(res, 200, alexaResponse(alexaText(lang, "help"), false));
+      return;
+    }
+
+    if (requestType === "IntentRequest" && ["AMAZON.CancelIntent", "AMAZON.StopIntent"].includes(intentName)) {
+      send(res, 200, alexaResponse(alexaText(lang, "bye")));
+      return;
+    }
+
+    if (requestType === "IntentRequest") {
+      const action = actionFromIntent(intentName);
+      if (!action) {
+        send(res, 200, alexaResponse(alexaText(lang, "unsupported")));
+        return;
+      }
+
+      const user = db.users[0];
+      const device = db.devices.find((item) => item.userId === user.id);
+      if (!device) {
+        send(res, 200, alexaResponse(alexaText(lang, "noDevice")));
+        return;
+      }
+
+      queueCommand(device, action, "alexa-skill");
+      send(res, 200, alexaResponse(alexaText(lang, "queued", action)));
+      return;
+    }
+
+    send(res, 200, alexaResponse(alexaText(lang, "help"), false));
     return;
   }
 
