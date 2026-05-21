@@ -10,7 +10,7 @@ const QRCode = require("qrcode");
 const DEFAULT_PORT = 8787;
 const COUNTDOWN_SECONDS = 10;
 const realShutdown = process.argv.includes("--real-shutdown");
-const DEFAULT_CLOUD_URL = "http://localhost:8799";
+const DEFAULT_CLOUD_URL = "https://voltcue-cloud-api.onrender.com";
 const DEMO_USER_TOKEN = "demo-user-token";
 const cloudDemo = process.argv.includes("--cloud-demo");
 
@@ -26,6 +26,7 @@ const state = {
   cloudStatus: "Desconectada",
   cloudDeviceId: "",
   cloudAgentToken: "",
+  cloudUserToken: "",
   shutdownPending: false,
   pendingAction: "",
   countdown: 0,
@@ -122,6 +123,7 @@ function loadSettings() {
     state.cloudApiUrl = settings.cloudApiUrl || DEFAULT_CLOUD_URL;
     state.cloudDeviceId = settings.cloudDeviceId || "";
     state.cloudAgentToken = settings.cloudAgentToken || "";
+    state.cloudUserToken = settings.cloudUserToken || "";
     state.pairedDevices = Array.isArray(settings.pairedDevices) ? settings.pairedDevices : [];
     state.paired = state.pairedDevices.length > 0;
     state.pairedName = state.pairedDevices[0]?.name || "";
@@ -138,6 +140,7 @@ function saveSettings() {
     cloudApiUrl: state.cloudApiUrl,
     cloudDeviceId: state.cloudDeviceId,
     cloudAgentToken: state.cloudAgentToken,
+    cloudUserToken: state.cloudUserToken,
     pairedDevices: state.pairedDevices,
   };
   fs.mkdirSync(path.dirname(settingsPath()), { recursive: true });
@@ -364,9 +367,16 @@ async function connectCloud({ enabled = true, apiUrl = state.cloudApiUrl } = {})
   try {
     state.cloudStatus = "Conectando...";
     sendState();
+    const auth = await cloudRequest("/api/auth/demo", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${state.cloudUserToken || DEMO_USER_TOKEN}` },
+    });
+    if (!auth.ok || !auth.userToken) throw new Error(auth.message || "No se pudo iniciar demo cloud.");
+    state.cloudUserToken = auth.userToken;
+
     const result = await cloudRequest("/api/agents/register", {
       method: "POST",
-      headers: { Authorization: `Bearer ${DEMO_USER_TOKEN}` },
+      headers: { Authorization: `Bearer ${state.cloudUserToken}` },
       body: JSON.stringify({ name: state.deviceName, platform: "windows" }),
     });
     if (!result.ok) throw new Error(result.message || "No se pudo registrar la PC.");
@@ -791,7 +801,7 @@ app.whenReady().then(() => {
   loadSettings();
   if (cloudDemo) {
     state.cloudEnabled = true;
-    state.cloudApiUrl = DEFAULT_CLOUD_URL;
+    state.cloudApiUrl = process.env.VOLTCUE_CLOUD_API_URL || DEFAULT_CLOUD_URL;
   }
   applyAutoStart(state.autoStartEnabled);
   startServer();

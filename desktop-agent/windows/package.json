@@ -8,6 +8,7 @@
     "start": "electron .",
     "start:real": "electron . --real-shutdown",
     "start:cloud-demo": "electron . --cloud-demo",
+    "start:render-demo": "electron . --cloud-demo",
     "pack": "electron-builder --dir",
     "dist": "electron-builder"
   },

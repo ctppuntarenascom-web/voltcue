@@ -32,7 +32,7 @@ function render(state) {
   els.cloudEnabled.checked = Boolean(state.cloudEnabled);
   els.cloudStatus.textContent = state.cloudStatus || "Desconectada";
   if (document.activeElement !== els.cloudApiUrl) {
-    els.cloudApiUrl.value = state.cloudApiUrl || "http://localhost:8799";
+    els.cloudApiUrl.value = state.cloudApiUrl || "https://voltcue-cloud-api.onrender.com";
   }
   if (!editingName) {
     els.deviceName.value = state.deviceName || "";
