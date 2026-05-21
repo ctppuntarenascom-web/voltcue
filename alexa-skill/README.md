@@ -63,16 +63,34 @@ node .\lambda\local-test.js lock
 ## Variables De Entorno
 
 ```text
-VOLTCUE_CLOUD_API_URL=http://localhost:8799
+VOLTCUE_CLOUD_API_URL=https://voltcue-cloud-api.onrender.com
 VOLTCUE_USER_TOKEN=demo-user-token
 ```
 
-## Siguiente Paso
+## Paquete Para Lambda
 
-Para usarlo en Alexa real:
+Genera el ZIP listo para subir:
 
-1. Crear una skill en Amazon Developer Console.
-2. Copiar `models/en-US.json` al Interaction Model.
-3. Subir `lambda/index.js` como AWS Lambda o endpoint compatible HTTPS.
-4. Cambiar la Cloud API local por una URL publica HTTPS.
-5. Agregar account linking real para usuarios.
+```powershell
+npm run package:lambda
+```
+
+Archivo generado:
+
+```text
+build/voltcue-alexa-lambda.zip
+```
+
+## Alexa Real
+
+1. Crea una skill en Amazon Developer Console con nombre `VoltCue`.
+2. Invocation name: `volt cue`.
+3. Copia el modelo `models/en-US.json` para ingles.
+4. Opcional: copia `models/es-US.json` para espanol de Estados Unidos.
+5. Sube `build/voltcue-alexa-lambda.zip` a AWS Lambda o a una Alexa-hosted skill.
+6. Variables:
+
+```text
+VOLTCUE_CLOUD_API_URL=https://voltcue-cloud-api.onrender.com
+VOLTCUE_USER_TOKEN=demo-user-token
+```

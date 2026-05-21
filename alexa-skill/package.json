@@ -5,7 +5,8 @@
   "description": "VoltCue Alexa Skill demo handler",
   "main": "lambda/index.js",
   "scripts": {
-    "test": "node lambda/local-test.js"
+    "test": "node lambda/local-test.js",
+    "package:lambda": "powershell -ExecutionPolicy Bypass -File scripts/package-lambda.ps1"
   },
   "dependencies": {
     "ask-sdk-core": "^2.14.0"

@@ -1,0 +1,67 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "volt cue",
+      "intents": [
+        {
+          "name": "ShutdownIntent",
+          "slots": [],
+          "samples": [
+            "apaga mi pc",
+            "apaga mi computadora",
+            "apagar mi pc",
+            "apagar mi computadora",
+            "apaga la computadora"
+          ]
+        },
+        {
+          "name": "RestartIntent",
+          "slots": [],
+          "samples": [
+            "reinicia mi pc",
+            "reinicia mi computadora",
+            "reiniciar mi pc",
+            "reiniciar mi computadora"
+          ]
+        },
+        {
+          "name": "SleepIntent",
+          "slots": [],
+          "samples": [
+            "suspende mi pc",
+            "suspende mi computadora",
+            "poner mi pc en suspension",
+            "poner mi computadora en suspension"
+          ]
+        },
+        {
+          "name": "LockIntent",
+          "slots": [],
+          "samples": [
+            "bloquea mi pc",
+            "bloquea mi computadora",
+            "bloquear mi pc",
+            "bloquear mi computadora"
+          ]
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        }
+      ],
+      "types": []
+    }
+  }
+}
